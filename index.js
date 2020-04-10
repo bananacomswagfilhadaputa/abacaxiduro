@@ -42,19 +42,16 @@ client.on('message', message =>{
   }
 })
 
-client.on('guildMemberAdd', member => {
-  const randomColor = "#000000".replace(/0/g, function () { return (~~(Math.random() * 16)).toString(16); });
+client.on("guildMemberAdd", member => {
+  const embed = new Discord.RichEmbed()
+  .setTitle("**PT CUSTOMS**")
+  .setColor("#4bf221")
+  .setDescription("\n \nSeja bem-vindo ao servidor ${member}!\n \n`Esperamos que se divirta!\n\n:white_small_square: Leia as <#677307707082145792> para evitar ser punido! \n \n `Obrigado por entrar no servidor e espero que se divirta ! 😄\n\n<:ceta:493180007267696645> Agora temos **${member.guild.memberCount}** membros no Discord!`")
 
-  let canal = member.guild.channels.find(r => r.name === '👋🏻welcome');
-  if (!canal) return;
-
-  var embed = new Discord.RichEmbed()
-  .setColor(`#36393F`)
-  .setDescription(`Seja bem-vindo ao servidor ${member}!\nEsperamos que se divirta!\n\n:white_small_square: Leia as <#493144191673565195> para evitar ser punido!\n:white_small_square: Visite o chat <#677464821041725441> para interagir com os membros.\n\n<:ceta:493180007267696645> Agora temos **${member.guild.memberCount}** membros no Discord!`)
-  .setThumbnail(member.user.avatarURL)
   .setTimestamp()
-  canal.send({embed : embed})
-  message.react("❤")
+  .setFooter(`iDetect - BOT`, "https://cdn.discordapp.com/emojis/460264772869554176.gif")
+
+member.send(embed)
 });
 
 client.on('message', message =>{
